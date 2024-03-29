@@ -9,34 +9,7 @@
 
 <h2>Embedded Web Page</h2>
 
-<div id="iframeWrapper" style="width: 800px; height: 600px; overflow: hidden;">
-    <iframe id="embeddedPage" width="800" height="1200" frameborder="0" src="https://broker.mqttgo.io/"></iframe>
-</div>
-
-<script>
-    // 等待 iframe 加载完成
-    window.onload = function() {
-        var iframe = document.getElementById('embeddedPage');
-        var iframeWrapper = document.getElementById('iframeWrapper');
-        
-        // 等待iframe加载完成
-        iframe.onload = function() {
-            // 获取 iframe 中的整个文档高度和宽度
-            var docHeight = iframe.contentWindow.document.body.scrollHeight;
-            var docWidth = iframe.contentWindow.document.body.scrollWidth;
-            
-            // 计算要显示的中间部分的位置
-            var topMargin = (docHeight - 600) / 2;
-            var leftMargin = (docWidth - 800) / 2;
-            
-            // 设置 iframeWrapper 的偏移量
-            iframeWrapper.style.overflow = 'hidden';
-            iframe.style.position = 'relative';
-            iframe.style.top = '-' + topMargin + 'px';
-            iframe.style.left = '-' + leftMargin + 'px';
-        };
-    };
-</script>
+<iframe src="https://broker.mqttgo.io/" width="800" height="600" frameborder="0"></iframe>
 
 </body>
 </html>
