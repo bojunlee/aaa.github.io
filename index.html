@@ -3,93 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第一名的網站</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* 添加額外的CSS樣式以調整數值顯示 */
-        #data-table {
-            margin: 0 auto;
-        }
-        #data-table th, #data-table td {
-            font-size: 20px;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-        }
-        .data-row th, .data-row td {
-            width: 48%; /* 將溫度和濕度分開，各佔48%的寬度 */
-        }
-    </style>
+    <title>Embedded Web Page</title>
 </head>
 <body>
-    <header>
-        <h1>寵物機器人-環太平洋號</h1>
-    </header>
-    <main>
-        <section id="thingspeak-section">
-            <h2>ThingSpeak Data</h2>
-            <div id="thingspeak-data">
-                <!-- ThingSpeak data will be displayed here -->
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 開發中</p>
-    </footer>
 
-    <script>
-        // Define your ThingSpeak channel ID
-        const channelID = '2277697';
+<h2>Embedded Web Page</h2>
 
-        function fetchData() {
-            // Get the ThingSpeak data URL
-            const url = `https://api.thingspeak.com/channels/${channelID}/feeds.json?results=1`;
+<div id="iframeWrapper" style="width: 800px; height: 600px; overflow: hidden;">
+    <iframe id="embeddedPage" width="800" height="1200" frameborder="0" src="https://broker.mqttgo.io/"></iframe>
+</div>
 
-            // Fetch data from ThingSpeak
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Parse JSON data and display it on the web page
-                    const thingspeakData = document.getElementById('thingspeak-data');
-                    const feed = data.feeds[0];
-                    if (feed) {
-                        const table = document.createElement('table');
-                        table.id = 'data-table'; // 添加表格的ID以應用CSS樣式
-                        table.innerHTML = `
-                            <tr>
-                                <th>Time</th>
-                                <th></th> <!-- 空白列 -->
-                                <th></th> <!-- 空白列 -->
-                            </tr>
-                            <tr>
-                                <td colspan="2">${feed.created_at}</td>
-                            </tr>
-                            <tr class="data-row">
-                                <th>溫度 (°C)</th>
-                                <th>濕度 (%)</th>
-                            </tr>
-                            <tr class="data-row">
-                                <td>${feed.field1}</td>
-                                <td>${feed.field2}</td>
-                            </tr>
-                        `;
-                        thingspeakData.innerHTML = '';
-                        thingspeakData.appendChild(table);
-                    }
-                })
-                .catch(error => {
-                    console.error('An error occurred:', error);
-                });
-        }
+<script>
+    // 等待 iframe 加载完成
+    window.onload = function() {
+        var iframe = document.getElementById('embeddedPage');
+        var iframeWrapper = document.getElementById('iframeWrapper');
+        
+        // 等待iframe加载完成
+        iframe.onload = function() {
+            // 获取 iframe 中的整个文档高度和宽度
+            var docHeight = iframe.contentWindow.document.body.scrollHeight;
+            var docWidth = iframe.contentWindow.document.body.scrollWidth;
+            
+            // 计算要显示的中间部分的位置
+            var topMargin = (docHeight - 600) / 2;
+            var leftMargin = (docWidth - 800) / 2;
+            
+            // 设置 iframeWrapper 的偏移量
+            iframeWrapper.style.overflow = 'hidden';
+            iframe.style.position = 'relative';
+            iframe.style.top = '-' + topMargin + 'px';
+            iframe.style.left = '-' + leftMargin + 'px';
+        };
+    };
+</script>
 
-        // Fetch data initially
-        fetchData();
-
-        // Set up an interval to fetch data every 5 seconds
-        setInterval(fetchData, 500);
-    </script>
 </body>
 </html>
