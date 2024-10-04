@@ -3,13 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Web Page</title>
+    <title>部落格網頁</title>
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .gallery img {
+            width: 45%;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 600px) {
+            .gallery img {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<h2>Embedded Web Page</h2>
-
-<iframe src="https://broker.mqttgo.io/" width="800" height="600" frameborder="0"></iframe>
+    <h1>Photo Gallery</h1>
+    <div class="gallery">
+        <img src="photo1.jpg" alt="Photo 1">
+        <img src="photo2.jpg" alt="Photo 2">
+        <img src="photo3.jpg" alt="Photo 3">
+        <img src="photo4.jpg" alt="Photo 4">
+    </div>
 
 </body>
 </html>
