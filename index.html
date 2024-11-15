@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品展示 - 李柏駿</title>
+    <style>
+        /* 設定網頁的背景顏色 */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(135deg, #f7a8b8, #feebc7);
+            animation: backgroundAnimation 12s infinite alternate;
+        }
+
+        /* 動畫效果設定 */
+        @keyframes backgroundAnimation {
+            0% {
+                background-image: linear-gradient(135deg, #f7a8b8, #feebc7);
+            }
+            100% {
+                background-image: linear-gradient(135deg, #a8d0e6, #f7a8b8);
+            }
+        }
+
+        /* 設定容器樣式 */
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* 設定標題 */
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        /* 設定連結的樣式 */
+        a {
+            display: block;
+            font-size: 20px;
+            margin: 20px 0;
+            padding: 18px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            font-weight: bold;
+        }
+
+        /* Hover 和動畫效果 */
+        a:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        a:active {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            a {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>歡迎來到我的作品展示</h1>
+        <a href="美食blog/index.html" target="_blank">美食 Blog</a>
+        <a href="https://vite-vue-yxtg-apxmlz7zw-bojunlees-projects.vercel.app" target="_blank">服飾電商網站</a>
+    </div>
+</body>
+</html>
